@@ -1,0 +1,156 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Haikal & Feliks anjing bgst- Dijual</title>
+  <style>
+    :root{--accent:#6C5CE7;--muted:#6b7280;--bg:#f8fafc}
+    *{box-sizing:border-box}
+    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; margin:0; background:var(--bg); color:#111}
+    header{background:linear-gradient(90deg,#f3f4ff,white);padding:28px 20px;border-bottom:1px solid #e6e9f2}
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;display:inline-grid;place-items:center;border-radius:12px;background:var(--accent);color:white;font-weight:700}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:20px}
+    .card{background:white;border-radius:12px;padding:14px;border:1px solid #eaedf7;box-shadow:0 6px 18px rgba(24,24,80,0.03);display:flex;flex-direction:column}
+    .thumb{width:100%;height:180px;border-radius:8px;display:block;overflow:hidden;background:linear-gradient(135deg,#eef2ff,#fff)}
+    .thumb svg{width:100%;height:100%;object-fit:cover}
+    .card h3{margin:10px 0 6px;font-size:18px}
+    .price{font-weight:700;color:var(--accent);font-size:16px}
+    .meta{color:var(--muted);font-size:14px;margin-bottom:10px}
+    .actions{margin-top:auto;display:flex;gap:8px}
+    button{cursor:pointer;border:0;padding:10px 12px;border-radius:10px;font-weight:600}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-outline{background:#fff;border:1px solid #e6e9f2;color:#111}
+    .cart{position:fixed;right:18px;bottom:18px;background:var(--accent);color:white;padding:12px 14px;border-radius:999px;display:flex;gap:8px;align-items:center;box-shadow:0 10px 30px rgba(108,92,231,0.2)}
+    .cart .count{background:rgba(255,255,255,0.16);padding:6px 8px;border-radius:999px;font-weight:700}
+    footer{padding:20px 0;text-align:center;color:var(--muted);font-size:13px}
+    /* responsive tweaks */
+    @media (max-width:420px){.thumb{height:140px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container brand">
+      <div class="logo">HF</div>
+      <div>
+        <h1>Haikal anjing &amp; Felikanjings</h1>
+        <p class="lead">Marketplace sederhana — produk bertema "Haikal" dan "Feliks anjing bgst". (Produk ini fiksi/merch)</p>
+      </div>
+    </div>
+  </header>  <main class="container">
+    <section class="grid" id="products">
+      <!-- Product: Haikal Plush -->
+      <article class="card" data-id="haikal" data-name="Haikal Plush" data-price="199000">
+        <div class="thumb" aria-hidden="true">
+          <!-- simple SVG placeholder -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="400" fill="#eef2ff"/>
+            <g transform="translate(40,35)" fill="#fff">
+              <rect x="0" y="0" width="520" height="330" rx="18" fill="#fff"/>
+            </g>
+            <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="36" fill="#6C5CE7">Haikal Plush</text>
+          </svg>
+        </div>
+        <h3>Haikal Plush (Boneka)</h3>
+        <div class="meta">Terbuat dari bahan lembut — cocok untuk koleksi dan hadiah.</div>
+        <div class="price">Rp 199.000</div>
+        <div class="actions">
+          <button class="btn-primary" onclick="addToCart(this.closest('.card'))">Tambah ke Keranjang</button>
+          <button class="btn-outline" onclick="showDetails(this.closest('.card'))">Detail</button>
+        </div>
+      </article><!-- Product: Feliks Figure -->
+  <article class="card" data-id="feliks" data-name="Feliks Figure" data-price="249000">
+    <div class="thumb" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
+        <rect width="600" height="400" fill="#fff8f0"/>
+        <g transform="translate(40,35)">
+          <rect x="0" y="0" width="520" height="330" rx="18" fill="#fff"/>
+        </g>
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="36" fill="#FF7A59">Feliks Figure</text>
+      </svg>
+    </div>
+    <h3>Feliks Figure kaya anjing (Figur Koleksi)</h3>
+    <div class="meta">Detail halus, material PVC, kedap debu.</div>
+    <div class="price">Rp 249.000</div>
+    <div class="actions">
+      <button class="btn-primary" onclick="addToCart(this.closest('.card'))">Tambah ke Keranjang</button>
+      <button class="btn-outline" onclick="showDetails(this.closest('.card'))">Detail</button>
+    </div>
+  </article>
+
+</section>
+
+<div style="margin-top:22px;display:flex;gap:12px;align-items:center">
+  <input id="search" placeholder="Cari produk..." style="flex:1;padding:10px;border-radius:10px;border:1px solid #e6e9f2" oninput="filterProducts()" />
+  <select id="sort" onchange="sortProducts()" style="padding:10px;border-radius:10px;border:1px solid #e6e9f2">
+    <option value="default">Diurutkan: Terbaik</option>
+    <option value="price-asc">Harga: Terendah</option>
+    <option value="price-desc">Harga: Tertinggi</option>
+  </select>
+</div>
+
+  </main>  <div class="cart" role="status" aria-live="polite" title="Keranjang">
+    <div style="font-weight:700">Keranjang</div>
+    <div class="count" id="cartCount">0</div>
+    <button onclick="openCart()" style="background:transparent;border:0;color:inherit;font-weight:700">Buka</button>
+  </div>  <footer>
+    <div class="container">© 2025 Haikal &amp; Feliks Merch — Ini hanyalah contoh halaman web. Tidak menjual orang nyata.</div>
+  </footer>  <script>
+    const cart = [];
+    function addToCart(card){
+      const id = card.dataset.id;
+      const name = card.dataset.name;
+      const price = Number(card.dataset.price);
+      const found = cart.find(i=>i.id===id);
+      if(found){ found.qty += 1; }
+      else{ cart.push({id,name,price,qty:1}); }
+      updateCartUI();
+    }
+    function updateCartUI(){
+      const count = cart.reduce((s,i)=>s+i.qty,0);
+      document.getElementById('cartCount').textContent = count;
+    }
+    function openCart(){
+      if(cart.length===0){ alert('Keranjang kosong — tambahkan produk terlebih dahulu.'); return; }
+      let text = 'Isi keranjang:\n\n';
+      let total = 0;
+      cart.forEach(item=>{
+        text += `${item.name} — Rp ${item.price.toLocaleString()} x ${item.qty} = Rp ${(item.price*item.qty).toLocaleString()}\n`;
+        total += item.price*item.qty;
+      });
+      text += '\nTotal: Rp ' + total.toLocaleString();
+      text += '\n\nLanjut ke pembayaran? (contoh: ini hanya demo)';
+      if(confirm(text)){
+        alert('Terima kasih! Ini hanya demo — tidak ada transaksi yang terjadi.');
+        cart.length = 0; updateCartUI();
+      }
+    }
+    function showDetails(card){
+      const name = card.dataset.name;
+      const price = Number(card.dataset.price);
+      alert(`${name}\nHarga: Rp ${price.toLocaleString()}\n\nDeskripsi singkat: Produk contoh untuk halaman demo.`);
+    }
+
+    function filterProducts(){
+      const q = document.getElementById('search').value.toLowerCase().trim();
+      document.querySelectorAll('#products .card').forEach(card=>{
+        const name = card.dataset.name.toLowerCase();
+        card.style.display = name.includes(q) ? 'flex' : 'none';
+      });
+    }
+    function sortProducts(){
+      const sel = document.getElementById('sort').value;
+      const grid = document.getElementById('products');
+      const cards = Array.from(grid.querySelectorAll('.card'));
+      if(sel==='price-asc') cards.sort((a,b)=>a.dataset.price - b.dataset.price);
+      else if(sel==='price-desc') cards.sort((a,b)=>b.dataset.price - a.dataset.price);
+      // else keep original order
+      cards.forEach(c=>grid.appendChild(c));
+    }
+  </script></body>
+</html>
